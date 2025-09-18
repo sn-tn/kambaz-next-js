@@ -5,21 +5,20 @@ export default function Lab1() {
             <h3>HTML Examples</h3>
             <div id="wd-h-tag">
                 <h4>Heading Tags</h4>
-                Text documents are often broken up into several sections and subsections. Each section is usually prefaced with a short title or heading that attempts to summarize the topic of the section it precedes. For instance this paragraph is preceded by the heading Heading Tags. The font of the section headings are usually larger and bolder than their subsection headings. This document uses headings to introduce topics such as HTML Documents, HTML Tags, Heading Tags, etc. HTML heading tags can be used to format plain text so that it renders in a browser as large headings. There are 6 heading tags for different sizes: h1, h2, h3, h4, h5, and h6. Tag h1 is the largest heading and h6 is the smallest heading.
+                Text documents are often broken up into several sections and subsections.
+                Each section is usually prefaced with a short title or heading that attempts
+                to summarize the topic of the section it precedes. For instance this paragraph
+                is preceded by the heading Heading Tags. The font of the section headings are usually
+                larger and bolder than their subsection headings. This document uses headings to introduce
+                topics such as HTML Documents, HTML Tags, Heading Tags, etc. HTML heading tags can be used
+                to format plain text so that it renders in a browser as large headings. There are 6 heading
+                tags for different sizes: h1, h2, h3, h4, h5, and h6. Tag h1 is the largest heading and h6
+                is the smallest heading.
             </div>
             <div id="wd-p-tag">
                 <h4>Paragraph Tags</h4>
                 <p id="wd-p-1">
-                    This is the first paragraph. The paragraph tag is used to format
-                    vertical gaps between long pieces of text like this one.
-
-                    This is the second paragraph. Even though there is a deliberate white
-                    gap between the paragraph above and this paragraph, by default
-                    browsers render them as one contiguous piece of text as shown here on
-                    the right.
-
-                    This is the third paragraph. Wrap each paragraph with the paragraph
-                    tag to tell browsers to render the gaps.
+                    This is a paragraph. We often separate a long set of sentences with vertical spaces to make the text easier to read. Browsers ignore vertical white spaces and render all the text as one single set of sentences. To force the browser to add vertical spacing, wrap the paragraphs you want to separate with the paragraph tag
                 </p>
                 <p id="wd-p-2">
                     This is the first paragraph. The paragraph tag is used to format
@@ -35,7 +34,6 @@ export default function Lab1() {
                     This is the third paragraph. Wrap each paragraph with the paragraph
                     tag to tell browsers to render the gaps.
                 </p>
-
             </div>
             <div id="wd-lists">
                 <h4>List Tags</h4>
@@ -51,6 +49,19 @@ export default function Lab1() {
                     <li>Flip and cook the other side.</li>
                     <li>Serve and enjoy!</li>
                 </ol>
+                My favorite recipe:
+                <ol id="wd-your-favorite-recipe">
+                    <li>Stir together yogurt and pesto in a small bowl; set aside.</li>
+                    <li>Spread 1/2 tablespoon butter over 1 bread slice and place on a cutting board, butter-side down.</li>
+                    <li>Spread half of the pesto mixture on the bread</li>
+                    <li>Top with mozzarella, chicken, tomato and basil.</li>
+                    <li>Spread the remaining pesto mixture on the remaining bread slice and place, pesto-side down, on top of the basil.</li>
+                    <li>Top with the remaining butter.</li>
+                    <li>Place the sandwich in a medium nonstick skillet over medium heat; press down lightly with a spatula.</li>
+                    <li>Cook until the bread is toasted and the cheese has just begun to melt, about 90 seconds per side.</li>
+                    <li>Slice the sandwich in half diagonally and serve warm.</li>
+                </ol>
+
                 <h5>Unordered List Tag</h5>
                 My favorite books (in no particular order)
                 <ul id="wd-my-books">
@@ -59,6 +70,13 @@ export default function Lab1() {
                     <li>Ender's Game</li>
                     <li>Red Mars</li>
                     <li>The Forever War</li>
+                </ul>
+                
+                Your favorite books (in no particular order)
+                <ul id="wd-your-books">
+                    <li>How to Train Your Dragon</li>
+                    <li>Solo Leveling</li>
+                    <li>1984</li>
                 </ul>
             </div>
             <div id="wd-tables">
@@ -79,14 +97,76 @@ export default function Lab1() {
                             <td>2/3/21</td>
                             <td>85</td>
                         </tr>
+                        <tr>
+                            <td>Q2</td>
+                            <td>CSS</td>
+                            <td>2/10/21</td>
+                            <td>90</td>
+                        </tr>
+                        <tr>
+                            <td>Q3</td>
+                            <td>JS</td>
+                            <td>2/17/21</td>
+                            <td>78</td>
+                        </tr>
+                        <tr>
+                            <td>Q4</td>
+                            <td>HTML 2</td>
+                            <td>2/24/21</td>
+                            <td>92</td>
+                        </tr>
+                        <tr>
+                            <td>Q5</td>
+                            <td>CSS 2</td>
+                            <td>3/3/21</td>
+                            <td>88</td>
+                        </tr>
+                        <tr>
+                            <td>Q6</td>
+                            <td>JS 2</td>
+                            <td>3/10/21</td>
+                            <td>83</td>
+                        </tr>
+                        <tr>
+                            <td>Q7</td>
+                            <td>HTML 3</td>
+                            <td>3/17/21</td>
+                            <td>95</td>
+                        </tr>
+                        <tr>
+                            <td>Q8</td>
+                            <td>CSS 3</td>
+                            <td>3/24/21</td>
+                            <td>76</td>
+                        </tr>
+                        <tr>
+                            <td>Q9</td>
+                            <td>JS 3</td>
+                            <td>3/31/21</td>
+                            <td>89</td>
+                        </tr>
+                        <tr>
+                            <td>Q10</td>
+                            <td>Final Exam</td>
+                            <td>4/7/21</td>
+                            <td>91</td>
+                        </tr>
                     </tbody>
                     <tfoot>
                         <tr>
                             <td colSpan={3}>Average</td>
-                            <td>90</td>
+                            <td>87</td>
                         </tr>
                     </tfoot>
                 </table>
+            </div>
+            <div id="wd-images">
+                <h4>Image tag</h4>
+                Loading an image from the internet: <br />
+                <img id="wd-starship" width="400px" src="https://www.staradvertiser.com/wp-content/uploads/2021/08/web1_Starship-gap2.jpg" />
+                <br />
+                Loading a local image: <br />
+                <img id="wd-teslabot" src="/images/teslabot.jpg" height="200px"/>
             </div>
             <div id="wd-forms">
                 <h4>Form Elements</h4>
@@ -97,7 +177,7 @@ export default function Lab1() {
                 <label htmlFor="wd-text-fields-password">Password:</label>
                 <input type="password" id="wd-text-fields-password" defaultValue="123@#$asd" /> <br />
                 <label htmlFor="wd-text-fields-first-name">First name:</label>
-                <input type="text" id="wd-text-fields-first-name" title="John" />
+                <input type="text" id="wd-text-fields-first-name" title="John" /> <br />
                 <label htmlFor="wd-text-fields-last-name">Last name:</label>
                 <input
                     type="text"
@@ -106,9 +186,15 @@ export default function Lab1() {
                     defaultValue="Wonderland"
                     title="The last name"
                 />
+
                 <h5>Text boxes</h5>
                 <label>Biography:</label><br />
-                <textarea id="wd-textarea" cols={30} rows={10}>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
+                <textarea id="wd-textarea" cols={30} rows={10}>Lorem ipsum dolor sit amet, consectetur
+                    adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                    Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip
+                    ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit
+                    esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
+                    proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</textarea>
 
                 <h5 id="wd-radio-buttons">Radio buttons</h5>
 
@@ -140,7 +226,7 @@ export default function Lab1() {
 
                 <input type="checkbox" name="check-genre" id="wd-chkbox-fantasy" />
                 <label htmlFor="wd-chkbox-fantasy">Fantasy</label>
-                {/* </form> */}
+                
                 <h4 id="wd-dropdowns">Dropdowns</h4>
                 <h5>Select one</h5>
                 <label htmlFor="wd-select-one-genre">Favorite movie genre:</label> <br />
@@ -186,7 +272,9 @@ export default function Lab1() {
                 <input type="date"
                     id="wd-text-fields-dob"
                     defaultValue="01-21-2000" /><br />
-
+                
+                <h4>Anchor tag</h4>
+                Please <a href="https://www.lipsum.com" id="wd-lipsum">click here</a> to get dummy text <br />
             </div>
         </div>
     );

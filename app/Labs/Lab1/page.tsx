@@ -275,6 +275,7 @@ export default function Lab1() {
                 
                 <h4>Anchor tag</h4>
                 Please <a href="https://www.lipsum.com" id="wd-lipsum">click here</a> to get dummy text <br />
+                <a href="https://github.com/sn-tn/kambaz-next-js" id="wd-github">Here's a link</a> to the repository for this website! <br />
             </div>
         </div>
     );

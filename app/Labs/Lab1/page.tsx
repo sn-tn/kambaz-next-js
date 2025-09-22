@@ -69,7 +69,7 @@ export default function Lab1() {
                 <ul id="wd-my-books">
                     <li>Dune</li>
                     <li>Lord of the Rings</li>
-                    <li>Ender's Game</li>
+                    <li>Ender&apos;'s Game</li>
                     <li>Red Mars</li>
                     <li>The Forever War</li>
                 </ul>
@@ -282,7 +282,7 @@ export default function Lab1() {
                 
                 <h4>Anchor tag</h4>
                 Please <a href="https://www.lipsum.com" id="wd-lipsum">click here</a> to get dummy text <br />
-                <a href="https://github.com/sn-tn/kambaz-next-js" id="wd-github">Here's a link</a> to the repository for this website! <br />
+                <a href="https://github.com/sn-tn/kambaz-next-js" id="wd-github">Here&apos;'s a link</a> to the repository for this website! <br />
             </div>
         </div>
     );

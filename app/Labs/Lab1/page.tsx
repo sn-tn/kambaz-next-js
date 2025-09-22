@@ -278,7 +278,7 @@ export default function Lab1() {
                     Date of birth: </label>
                 <input type="date"
                     id="wd-text-fields-dob"
-                    defaultValue="01-21-2000" /><br />
+                    defaultValue="2000-01-21" /><br />
                 
                 <h4>Anchor tag</h4>
                 Please <a href="https://www.lipsum.com" id="wd-lipsum">click here</a> to get dummy text <br />

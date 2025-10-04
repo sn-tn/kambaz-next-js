@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default function Float() {
   return (
@@ -16,5 +16,5 @@ export default function Float() {
       <img className="wd-float-right" src="https://www.staradvertiser.com/wp-content/uploads/2021/08/web1_Starship-gap2.jpg" />
       <div className="wd-float-done"></div>
     </div>
-  )
+  );
 }

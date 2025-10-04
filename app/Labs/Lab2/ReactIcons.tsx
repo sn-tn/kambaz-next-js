@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 import { AiOutlineDashboard } from 'react-icons/ai';
 import { FaBookBible, FaCalendar, FaEnvelopeOpenText, FaRegClock } from 'react-icons/fa6';
 import { VscAccount } from 'react-icons/vsc';

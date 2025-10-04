@@ -1,4 +1,4 @@
-import React from 'react'
+import React from 'react';
 
 export default function Flex() {
   return (
@@ -10,5 +10,5 @@ export default function Flex() {
         <div className="wd-bg-color-red wd-flex-grow-1">Column 3</div>
       </div>
     </div>
-  )
+  );
 }

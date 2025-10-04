@@ -26,7 +26,7 @@ export default function Lab2() {
             <h3>Styling with the STYLE attribute</h3>
             <p>
                 Style attribute allows configuring look and feel right on the element.
-                Although it's very convenient it is considered bad practice and you should
+                Although it&apos;s very convenient it is considered bad practice and you should
                 avoid using the style attribute
             </p>
             <div id="wd-css-id-selectors">
@@ -36,13 +36,13 @@ export default function Lab2() {
                     we can refer to a specific element by its ID
                 </p>
                 <p id="wd-id-selector-2">
-                    Here's another paragraph using a different ID and a different look and feel
+                    Here&apos;s another paragraph using a different ID and a different look and feel
                 </p>
             </div>
             <div id="wd-css-class-selectors">
                 <h3>Class Selectors</h3>
                 <p className="wd-class-selector">
-                    Instead of using IDs to refer to elements, you can use an element's CLASS attribute
+                    Instead of using IDs to refer to elements, you can use an element&apos;s CLASS attribute
                 </p>
                 <h4 className="wd-class-selector">
                     This heading has the same style as the paragraph above

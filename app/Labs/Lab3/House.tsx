@@ -11,7 +11,8 @@ export default function House() {
       country: "Italy"
     },
     owners: ["Alice", "Bob"]
-  }
+  };
+  console.log(house);
   return (
     <div id="wd-house">
       <h4>House</h4>

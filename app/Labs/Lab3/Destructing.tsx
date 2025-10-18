@@ -1,5 +1,3 @@
-import { First } from "react-bootstrap/esm/PageItem";
-
 export default function Destructing() {
   const person = { name: "John", age: 25 };
   const {name, age} = person;

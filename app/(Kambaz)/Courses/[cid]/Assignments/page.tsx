@@ -1,3 +1,4 @@
+"use client";
 import Link from "next/link";
 import AssignmentsControls from "./AssignmentsControls";
 import { ListGroup, ListGroupItem } from "react-bootstrap";
@@ -6,8 +7,12 @@ import { IoMdArrowDropdown } from "react-icons/io";
 import AssignmentsControlButtons from "./AssignmentsControlButtons";
 import AssignmentsPercentage from "./AssignmentsPercentage";
 import AssignmentControlButtons from "./AssignmentControlButtons";
+import { useParams } from "next/navigation";
+import * as db from "../../../Database";
 
 export default function Assignments() {
+  const { cid } = useParams();
+  const { assignments } = db;
   return (
     <div>
       <AssignmentsControls /> <br /> <br /> <br /> <br />
@@ -18,7 +23,28 @@ export default function Assignments() {
             ASSIGNMENTS
             <AssignmentsControlButtons /> <AssignmentsPercentage />
           </div>
-          <ListGroup className="wd-assignment-list-item rounded-0">
+          {assignments
+            .filter((assignment: any) => assignment.course === cid)
+            .map((assignment) => (
+              <ListGroup className="wd-assignment-list-item rounded-0">
+                <ListGroupItem className="p-3 ps-1">
+                  <BsGripVertical className="me-2 fs-3 float-start" />
+                  <div id="wd-assignment-description" className="float-start">
+                    <Link href={`/Courses/${cid}/Assignments/${assignment._id}`} className="wd-assignment-link text-decoration-none text-dark fs-4">
+                      <b>{assignment.title}</b>
+                    </Link>
+                    <div id="wd-assignment-available" className="fs-6">
+                      <span className="text-danger">Multiple Modules</span> | <b>Not available until</b> May 6 at 12:00am |
+                    </div>
+                    <div id="wd-assignment-due" className="fs-6">
+                      <b>Due</b> May 13 at 11:59pm | 100 pts
+                    </div>
+                  </div>
+                </ListGroupItem>
+              </ListGroup>
+            ))}
+          {/*old assignments*/}
+          {/* <ListGroup className="wd-assignment-list-item rounded-0">
             <ListGroupItem className="p-3 ps-1">
               <BsGripVertical className="me-2 fs-3 float-start" />
               <div id="wd-assignment-description" className="float-start">
@@ -68,7 +94,7 @@ export default function Assignments() {
               </div>
               <AssignmentControlButtons />
             </ListGroupItem>
-          </ListGroup>
+          </ListGroup> */}
         </ListGroupItem>
       </ListGroup>
     </div>

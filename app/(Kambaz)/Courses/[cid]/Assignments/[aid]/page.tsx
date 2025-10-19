@@ -1,10 +1,17 @@
+"use client";
 import { Button, Col, Container, FormCheck, FormLabel, Row } from "react-bootstrap"
+import * as db from "../../../../Database";
+import { useParams } from "next/navigation";
+import Link from "next/link";
 
 export default function AssignmentEditor() {
+  const { cid, aid } = useParams();
+  const assignment = db.assignments.find((asgnmt) => asgnmt._id === aid);
   return (
     <div id="wd-assignment-editor" className="ms-5">
       <label htmlFor="wd-name" className="form-label">Assignment Name</label>
-      <input id="wd-name" className="form-control mb-5" defaultValue="A1 - ENV + HTML" />
+      <input id="wd-name" className="form-control mb-5"
+        defaultValue={assignment?.title} />
       <textarea id="wd-description" rows={5} className="form-control mb-4">
         The assignment is available online Submit a link to the landing page of your Web application running on Netlify.
         The landing page should include the following: Your full name and section Links to each of the lab assignments
@@ -83,8 +90,12 @@ export default function AssignmentEditor() {
       </Row>
       <hr />
       <div className="float-end">
-        <Button variant="secondary" className="border-secondary text-dark me-1">Cancel</Button>
-        <Button variant="danger" className="border-secondary">Save</Button>
+        <Link href={`/Courses/${cid}/Assignments`}>
+          <Button variant="secondary" className="border-secondary text-dark me-1">Cancel</Button>
+        </Link>
+        <Link href={`/Courses/${cid}/Assignments`}>
+          <Button variant="danger" className="border-secondary">Save</Button>
+        </Link>
       </div>
     </div>
   );

@@ -24,9 +24,9 @@ export default function Assignments() {
             <AssignmentsControlButtons /> <AssignmentsPercentage />
           </div>
           {assignments
-            .filter((assignment: any) => assignment.course === cid)
+            .filter((assignment) => assignment.course === cid)
             .map((assignment) => (
-              <ListGroup className="wd-assignment-list-item rounded-0">
+              <ListGroup key={assignment._id} className="wd-assignment-list-item rounded-0">
                 <ListGroupItem className="p-3 ps-1">
                   <BsGripVertical className="me-2 fs-3 float-start" />
                   <div id="wd-assignment-description" className="float-start">

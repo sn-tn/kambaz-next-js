@@ -9,6 +9,7 @@ export default function TOC() {
         { href: "/Labs/Lab1", label: "Lab1", id: "wd-lab-1-link"},
         { href: "/Labs/Lab2", label: "Lab2", id: "wd-lab-2-link"},
         { href: "/Labs/Lab3", label: "Lab3", id: "wd-lab-3-link"},
+        { href: "/Labs/Lab4", label: "Lab4", id: "wd-lab-4-link"},
         { href: "/", label: "Kambaz", id: "wd-kambaz-link"},
         { href: "https://github.com/sn-tn/kambaz-next-js", label: "GitHub Repo", id: "wd-github-repo-link"}
     ];

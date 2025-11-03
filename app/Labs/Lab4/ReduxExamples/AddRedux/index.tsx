@@ -2,11 +2,12 @@ import { add } from "./addReducer";
 import { useState } from "react";
 import { Button, FormControl } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../store";
 
 export default function AddRedux() {
   const [a, setA] = useState(12);
   const [b, setB] = useState(23);
-  const { sum } = useSelector((state: any) => state.addReducer);
+  const { sum } = useSelector((state: RootState) => state.addReducer);
   const dispatch = useDispatch();
   return (
     <div id="wd-add-redux">

@@ -1,7 +1,42 @@
+"use client";
+import { Provider } from "react-redux";
+import ArrayStateVariable from "./ArrayStateVariable";
+import BooleanStateVariables from "./BooleanStateVariables";
+import ClickEvent from "./ClickEvent";
+import Counter from "./Counter";
+import DateStateVariable from "./DateStateVariable";
+import EventObject from "./EventObject";
+import ObjectStateVariable from "./ObjectStateVariable";
+import ParentStateComponent from "./ParentStateComponent";
+import PassingDataOnEvent from "./PassingDataOnEvent";
+import PassingFunctions from "./PassingFunctions";
+import ReduxExamples from "./ReduxExamples/page";
+import StringStateVariables from "./StringStateVariables";
+import store from "./store";
+import TodoList from "./ReduxExamples/todos/TodoList";
+
 export default function Lab4() {
+  function sayHello() {
+    alert("Hello");
+  }
   return (
-    <div>
-      <h3>Lab 4</h3>
-    </div>
+    <Provider store={store}>
+      <div>
+        <h3>Lab 4</h3>
+        <ClickEvent />
+        <PassingDataOnEvent />
+        <PassingFunctions theFunction={sayHello} />
+        <EventObject />
+        <Counter />
+        <BooleanStateVariables />
+        <StringStateVariables />
+        <DateStateVariable />
+        <ObjectStateVariable />
+        <ArrayStateVariable />
+        <ParentStateComponent />
+        <ReduxExamples />
+        <TodoList />
+      </div>
+    </Provider>
   )
 }

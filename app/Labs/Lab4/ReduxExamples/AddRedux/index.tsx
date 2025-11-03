@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 import { add } from "./addReducer";
 import { useState } from "react";
 import { Button, FormControl } from "react-bootstrap";

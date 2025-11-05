@@ -1,5 +1,5 @@
 import { redirect } from 'next/navigation';
-import React, { useState } from 'react';
+import React from 'react';
 import { Button, Col, FormControl, InputGroup, Row } from 'react-bootstrap';
 import InputGroupText from 'react-bootstrap/esm/InputGroupText';
 import { CiSearch } from 'react-icons/ci';

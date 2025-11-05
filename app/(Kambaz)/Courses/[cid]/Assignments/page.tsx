@@ -8,18 +8,12 @@ import AssignmentsControlButtons from "./AssignmentsControlButtons";
 import AssignmentsPercentage from "./AssignmentsPercentage";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import { useParams } from "next/navigation";
-import * as db from "../../../Database";
-import { useDispatch, useSelector } from "react-redux";
+import { useSelector } from "react-redux";
 import { RootState } from "../../../store";
-import { useState } from "react";
-import { FaTrashCan } from "react-icons/fa6";
-import { deleteAssignment } from "./reducer";
 
 export default function Assignments() {
   const { cid } = useParams();
   const { assignments } = useSelector((state: RootState) => state.assignmentReducer);
-  const [ assignment, setAssignment ] = useState({});
-  const dispatch = useDispatch();
   return (
     <div>
       <AssignmentsControls /> <br /> <br /> <br /> <br />
@@ -47,12 +41,7 @@ export default function Assignments() {
                       <b>Due</b> {new Date(assignment.due).toDateString()} | {assignment.points} pts
                     </div>
                   </div>
-                  <FaTrashCan id="wd-assignment-delete-click" className="text-danger float-end"
-                  onClick={() => {
-                    if (confirm(`Are you sure you want to remove assignment: ${assignment.title}`)) {
-                      dispatch(deleteAssignment(assignment._id));
-                    }
-                  }}/>
+                  <AssignmentControlButtons assignment={assignment}/>
                 </ListGroupItem>
               </ListGroup>
             ))}

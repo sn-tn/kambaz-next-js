@@ -1,5 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
-import Link from "next/link";
 import { RootState } from "../../store";
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";

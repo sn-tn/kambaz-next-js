@@ -1,6 +1,6 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import { Button, Col, Container, FormCheck, FormLabel, Row } from "react-bootstrap"
-import * as db from "../../../../Database";
 import { redirect, useParams } from "next/navigation";
 import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";

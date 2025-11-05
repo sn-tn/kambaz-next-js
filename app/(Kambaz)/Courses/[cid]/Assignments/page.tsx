@@ -9,10 +9,17 @@ import AssignmentsPercentage from "./AssignmentsPercentage";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import { useParams } from "next/navigation";
 import * as db from "../../../Database";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../store";
+import { useState } from "react";
+import { FaTrashCan } from "react-icons/fa6";
+import { deleteAssignment } from "./reducer";
 
 export default function Assignments() {
   const { cid } = useParams();
-  const { assignments } = db;
+  const { assignments } = useSelector((state: RootState) => state.assignmentReducer);
+  const [ assignment, setAssignment ] = useState({});
+  const dispatch = useDispatch();
   return (
     <div>
       <AssignmentsControls /> <br /> <br /> <br /> <br />
@@ -34,12 +41,18 @@ export default function Assignments() {
                       <b>{assignment.title}</b>
                     </Link>
                     <div id="wd-assignment-available" className="fs-6">
-                      <span className="text-danger">Multiple Modules</span> | <b>Not available until</b> May 6 at 12:00am |
+                      <span className="text-danger">Multiple Modules</span> | <b>Available From</b> {new Date(assignment.availableFrom).toDateString()} | <b>Available Until</b> {new Date(assignment.availableUntil).toDateString()}
                     </div>
                     <div id="wd-assignment-due" className="fs-6">
-                      <b>Due</b> May 13 at 11:59pm | 100 pts
+                      <b>Due</b> {new Date(assignment.due).toDateString()} | {assignment.points} pts
                     </div>
                   </div>
+                  <FaTrashCan id="wd-assignment-delete-click" className="text-danger float-end"
+                  onClick={() => {
+                    if (confirm(`Are you sure you want to remove assignment: ${assignment.title}`)) {
+                      dispatch(deleteAssignment(assignment._id));
+                    }
+                  }}/>
                 </ListGroupItem>
               </ListGroup>
             ))}

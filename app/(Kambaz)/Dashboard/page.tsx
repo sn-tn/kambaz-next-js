@@ -18,7 +18,7 @@ export default function Dashboard() {
     startDate: "2023-09-10", endDate: "2023-12-15",
     image: "/images/reactjs.jpg", description: "New Description"
   });
-  const isFaculty = (currentUser as any).role === "FACULTY";
+  const isFaculty = currentUser && (currentUser as any).role === "FACULTY";
   if (!currentUser) {
     return <div>You need to be logged in to view this page.</div>
   }

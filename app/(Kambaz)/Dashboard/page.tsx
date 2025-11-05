@@ -18,10 +18,11 @@ export default function Dashboard() {
     startDate: "2023-09-10", endDate: "2023-12-15",
     image: "/images/reactjs.jpg", description: "New Description"
   });
-  const isFaculty = currentUser && (currentUser as any).role === "FACULTY";
-  if (!currentUser) {
-    return <div>You need to be logged in to view this page.</div>
-  }
+  // const isFaculty = currentUser && (currentUser as any).role === "FACULTY";
+  const isFaculty = true;
+  // if (!currentUser) {
+  //   return <div>You need to be logged in to view this page.</div>
+  // }
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">Dashboard
@@ -38,11 +39,12 @@ export default function Dashboard() {
       <h2 id="wd-dashboard-published">Public Courses ({courses.length})</h2> <hr />
       <div id="wd-dashboard-courses">
         <Row xs={1} md={5} className="g-4">
-          {courses.filter((course) => enrollments.some(
-            (enrollment) =>
-              enrollment.user === (currentUser as any)._id &&
-              enrollment.course === course._id
-          ))
+          {courses
+          // .filter((course) => enrollments.some(
+          //   (enrollment) =>
+          //     enrollment.user === (currentUser as any)._id &&
+          //     enrollment.course === course._id
+          // ))
             .map((course: any) => (
               <Col key={course._id} className="wd-dashboard-course" style={{ width: "300px" }}>
                 <Card>

@@ -1,0 +1,28 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import { ReactNode, useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
+import * as client from "./client";
+import { setCurrentUser } from "./reducer";
+
+export default function Session({ children }: { children: any }) {
+  const [pending, setPending] = useState(true);
+  const dispatch = useDispatch();
+  const fetchProfile = async () => {
+    try {
+      const currentUser = await client.profile();
+      dispatch(setCurrentUser(currentUser));
+    } catch (err: any) {
+      // not logged in, but I don't want to keep throwing the error
+      // console.error(err);
+    }
+    setPending(false);
+  };
+  useEffect(() => {
+    fetchProfile();
+  }, []);
+  if (!pending) {
+    return children;
+  } else {
+    return "Loading";
+  }
+}

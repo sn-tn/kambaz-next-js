@@ -6,7 +6,7 @@ import { FaTrashCan } from 'react-icons/fa6';
 import { useDispatch } from 'react-redux';
 import { deleteAssignment } from './reducer';
 
-export default function AssignmentsControlButtons({assignment} : {assignment: any}) {
+export default function AssignmentsControlButtons({assignment, onRemoveAssignment} : {assignment: any, onRemoveAssignment: (id: string) => void}) {
   const dispatch = useDispatch();
   return (
     <div className="float-end">
@@ -15,7 +15,7 @@ export default function AssignmentsControlButtons({assignment} : {assignment: an
       <FaTrashCan id="wd-assignment-delete-click" className="mt-1 fs-4 text-danger float-end"
         onClick={() => {
           if (confirm(`Are you sure you want to remove assignment: ${assignment.title}`)) {
-            dispatch(deleteAssignment(assignment._id));
+            onRemoveAssignment(assignment._id);
           }
         }} />
     </div>

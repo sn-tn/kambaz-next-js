@@ -6,39 +6,56 @@ import Link from "next/link";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store";
 import { useEffect, useState } from "react";
-import { addAssignment, updateAssignment } from "../reducer";
+import { addAssignment, setAssignments, updateAssignment } from "../reducer";
+import * as client from "../client";
 
 export default function AssignmentEditor() {
   const { cid, aid } = useParams();
   const { assignments } = useSelector((state: RootState) => state.assignmentReducer);
-  const currentAssignment = assignments.find((asgnmt) => asgnmt._id === aid);
-  const [assignment, setAssignment] = useState<any>({});
-  const dispatch = useDispatch();
-  const isNew = currentAssignment === undefined;
-  const fetchAssignment = () => {
-    if (!currentAssignment) {
-      setAssignment({
+  const [assignment, setAssignment] = useState<any>({
         _id: aid,
         title: "New Assignment",
         course: cid,
         description: "New Assignment Description",
-        points: "100"
+        points: "100",
+        due: new Date().toISOString().slice(0, 10),
+        availableFrom: new Date().toISOString().slice(0, 10),
+        availableUntil: new Date().toISOString().slice(0, 10),
       });
-    } else {
-      setAssignment(currentAssignment);
-    }
+  const dispatch = useDispatch();
+  const [isNew, setIsNew] = useState(true);
+  const fetchAssignment = async () => {
+    const currentAssignment = await client.findAssignmentById(aid as string);
+    if (!currentAssignment) return;
+    setAssignment(currentAssignment);
+    setIsNew(false);
   };
+  const fetchAssignments = async () => {
+    const assignments = await client.findAssignmentsForCourse(cid as string);
+    dispatch(setAssignments(assignments));
+  }
+  const onCreateAssignmentForCourse = async () => {
+    if (!cid) return;
+    const newAssignment = await client.createAssignmentForCourse(cid as string, assignment);
+    dispatch(setAssignments([...assignments, newAssignment]));
+  }
+  const onUpdateAssignment = async () => {
+    await client.updateAssignment(assignment);
+    const newAssignments = assignments.map((a: any) => a._id === assignment._id ? assignment : a);
+    dispatch(setAssignments(newAssignments));
+  }
   useEffect(() => {
+    fetchAssignments();
     fetchAssignment();
   }, []);
   return (
     <div id="wd-assignment-editor" className="ms-5">
-      <label htmlFor="wd-name" className="form-label">Assignment Name</label>
+      <label htmlFor="wd-name" className="form-label"> Assignment Name</label>
       <input id="wd-name" className="form-control mb-4"
-        defaultValue={assignment.title} onChange={(e) => {
+        value={assignment.title} onChange={(e) => {
           setAssignment({ ...assignment, title: e.target.value });
         }} />
-      <textarea id="wd-description" defaultValue={assignment.description} rows={5} className="form-control mb-4"
+      <textarea id="wd-description" value={assignment.description} rows={5} className="form-control mb-4"
         onChange={(e) => {
           setAssignment({ ...assignment, description: e.target.value });
         }} />
@@ -47,7 +64,7 @@ export default function AssignmentEditor() {
           <label htmlFor="wd-points" className="form-label float-end">Points</label>
         </Col>
         <Col sm={8}>
-          <input id="wd-points" type="number" className="form-control" defaultValue={assignment.points}
+          <input id="wd-points" type="number" className="form-control" value={assignment.points}
             onChange={(e) => {
               setAssignment({ ...assignment, points: e.target.value });
             }} />
@@ -100,18 +117,18 @@ export default function AssignmentEditor() {
             <label htmlFor="wd-assign-to" className="form-label"><b>Assign To</b></label>
             <input id="wd-assign-to" defaultValue="Everyone" className="form-control mb-4" />
             <label htmlFor="wd-due-date" className="form-label"><b>Due</b></label> <br />
-            <input type="date" id="wd-due-date" defaultValue={assignment.due} className="form-control mb-4"
+            <input type="date" id="wd-due-date" value={assignment.due || ""} className="form-control mb-4"
               onChange={(e) => setAssignment({ ...assignment, due: e.target.value })} />
             <Row>
               <Col>
                 <label htmlFor="wd-available-from" className="form-label"><b>Available from</b></label>
-                <input type="date" id="wd-available-from" defaultValue={assignment.availableFrom} className="form-control"
+                <input type="date" id="wd-available-from" value={assignment.availableFrom || ""} className="form-control"
                 onChange={(e) => setAssignment({...assignment, availableFrom: e.target.value})} />
 
               </Col>
               <Col>
                 <label htmlFor="wd-available-until" className="form-label"><b>Until</b></label>
-                <input type="date" id="wd-available-until" defaultValue={assignment.availableUntil} className="form-control col-md-6"
+                <input type="date" id="wd-available-until" value={assignment.availableUntil || ""} className="form-control col-md-6"
                 onChange={(e) => setAssignment({...assignment, availableUntil: e.target.value})} />
               </Col>
             </Row>
@@ -127,7 +144,12 @@ export default function AssignmentEditor() {
         <Link href={`/Courses/${cid}/Assignments`}>
           <Button variant="danger" className="border-secondary"
             onClick={() => {
-              dispatch(isNew ? addAssignment(assignment) : updateAssignment(assignment));
+              if (isNew) {
+                console.log("It's new");
+                onCreateAssignmentForCourse()
+              } else {
+                onUpdateAssignment();
+              }
               redirect("../");
             }}>Save</Button>
         </Link>

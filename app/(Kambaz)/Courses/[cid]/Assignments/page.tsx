@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
 "use client";
 import Link from "next/link";
 import AssignmentsControls from "./AssignmentsControls";
@@ -8,12 +9,27 @@ import AssignmentsControlButtons from "./AssignmentsControlButtons";
 import AssignmentsPercentage from "./AssignmentsPercentage";
 import AssignmentControlButtons from "./AssignmentControlButtons";
 import { useParams } from "next/navigation";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../store";
+import * as client from "./client";
+import { setAssignments } from "./reducer";
+import { useEffect } from "react";
 
 export default function Assignments() {
   const { cid } = useParams();
   const { assignments } = useSelector((state: RootState) => state.assignmentReducer);
+  const dispatch = useDispatch();
+  const fetchAssignments = async () => {
+    const assignments = await client.findAssignmentsForCourse(cid as string);
+    dispatch(setAssignments(assignments));
+  }
+  const onRemoveAssignment = async (assignmentId: string) => {
+    await client.deleteAssignment(assignmentId);
+    dispatch(setAssignments(assignments.filter((assignment: any) => assignment._id !== assignmentId)));
+  }
+  useEffect(() => {
+    fetchAssignments()
+  }, []);
   return (
     <div>
       <AssignmentsControls /> <br /> <br /> <br /> <br />
@@ -25,8 +41,7 @@ export default function Assignments() {
             <AssignmentsControlButtons /> <AssignmentsPercentage />
           </div>
           {assignments
-            .filter((assignment) => assignment.course === cid)
-            .map((assignment) => (
+            .map((assignment: any) => (
               <ListGroup key={assignment._id} className="wd-assignment-list-item rounded-0">
                 <ListGroupItem className="p-3 ps-1">
                   <BsGripVertical className="me-2 fs-3 float-start" />
@@ -41,7 +56,7 @@ export default function Assignments() {
                       <b>Due</b> {new Date(assignment.due).toDateString()} | {assignment.points} pts
                     </div>
                   </div>
-                  <AssignmentControlButtons assignment={assignment}/>
+                  <AssignmentControlButtons assignment={assignment} onRemoveAssignment={onRemoveAssignment}/>
                 </ListGroupItem>
               </ListGroup>
             ))}

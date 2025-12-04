@@ -31,9 +31,7 @@ export default function Dashboard() {
   const { currentUser } = useSelector(
     (state: RootState) => state.accountReducer
   );
-  const { enrollments } = useSelector(
-    (state: RootState) => state.enrollmentsReducer
-  );
+  const [allCourses, setAllCourses] = useState<any[]>();
   const [course, setCourse] = useState<any>({
     _id: "0",
     name: "New Course",
@@ -62,8 +60,12 @@ export default function Dashboard() {
   };
   const fetchAllCourses = async () => {
     try {
-      const courses = await client.fetchAllCourses();
-      dispatch(setCourses(courses));
+      const allCourses = await client.fetchAllCourses();
+      allCourses.map(
+        (course: any) =>
+          (course.enrolled = courses.some((c: any) => c._id === course._id))
+      );
+      setAllCourses(allCourses);
     } catch (error) {
       console.error(error);
     }
@@ -92,47 +94,48 @@ export default function Dashboard() {
       )
     );
   };
-  const fetchUserEnrollments = async () => {
-    const enrollments = await client.findMyEnrollments();
-    dispatch(setEnrollments(enrollments));
-  };
   const enrollUserInCourse = async (courseId: string) => {
-    const newEnrollment = await client.enrollUserInCourse(courseId);
-    dispatch(setEnrollments([...enrollments, newEnrollment]));
-  };
-  const unenrollUserInCourse = async (courseId: string) => {
-    await client.unenrollUserInCourse(courseId);
-    dispatch(
-      setEnrollments(
-        enrollments.filter((enrollment: any) => enrollment.course !== courseId)
+    const newCourse = await client.enrollUserInCourse(courseId);
+    dispatch(setCourses([...courses, newCourse]));
+    setAllCourses(
+      (allCourses as any).map((c: any) =>
+        c._id === courseId ? { ...c, enrolled: true } : c
       )
     );
   };
+  const unenrollUserInCourse = async (courseId: string) => {
+    await client.unenrollUserInCourse(courseId);
+    dispatch(setCourses(courses.filter((c: any) => c._id === courseId)));
+    setAllCourses(
+      (allCourses as any).map((c: any) =>
+        c._id === courseId ? { ...c, enrolled: false } : c
+      )
+    );
+
+  };
   useEffect(() => {
     fetchCourses();
+    fetchAllCourses();
     fetchFaculty();
-    fetchUserEnrollments();
   }, [currentUser]);
   return (
     <div id="wd-dashboard">
       <h1 id="wd-dashboard-title">
         Dashboard
-        {!isFaculty && (
-          <Button
-            variant="primary"
-            className="float-end"
-            onClick={() => {
-              if (enrollmentsActive) {
-                fetchCourses();
-              } else {
-                fetchAllCourses();
-              }
-              setEnrollmentsActive(!enrollmentsActive);
-            }}
-          >
-            Enrollments
-          </Button>
-        )}
+        <Button
+          variant="primary"
+          className="float-end"
+          onClick={() => {
+            if (enrollmentsActive) {
+              fetchCourses();
+            } else {
+              fetchAllCourses();
+            }
+            setEnrollmentsActive(!enrollmentsActive);
+          }}
+        >
+          Enrollments
+        </Button>
       </h1>
       <hr />
       {isFaculty && (
@@ -174,13 +177,13 @@ export default function Dashboard() {
       <hr />
       <div id="wd-dashboard-courses">
         <Row xs={1} md={5} className="g-4">
-          {courses.map((course: any) => (
-            <Col
-              key={course._id}
-              className="wd-dashboard-course"
-              style={{ width: "300px" }}
-            >
-              {!enrollmentsActive && (
+          {!enrollmentsActive &&
+            courses.map((course: any) => (
+              <Col
+                key={course._id}
+                className="wd-dashboard-course"
+                style={{ width: "300px" }}
+              >
                 <Card>
                   <Link
                     href={`/Courses/${course._id}/Home`}
@@ -231,8 +234,15 @@ export default function Dashboard() {
                     </CardBody>
                   </Link>
                 </Card>
-              )}
-              {enrollmentsActive && (
+              </Col>
+            ))}
+          {enrollmentsActive &&
+            (allCourses as any).map((course: any) => (
+              <Col
+                key={course._id}
+                className="wd-enrollments-course"
+                style={{ width: "300px" }}
+              >
                 <Card>
                   <CardImg
                     variant="top"
@@ -250,9 +260,7 @@ export default function Dashboard() {
                     >
                       {course.description}
                     </CardText>
-                    {enrollments.some(
-                      (enrollment: any) => enrollment.course === course._id
-                    ) ? (
+                    {course.enrolled ? (
                       <Button
                         className="btn-danger"
                         onClick={() => unenrollUserInCourse(course._id)}
@@ -269,9 +277,8 @@ export default function Dashboard() {
                     )}
                   </CardBody>
                 </Card>
-              )}
-            </Col>
-          ))}
+              </Col>
+            ))}
         </Row>
       </div>
     </div>

@@ -149,6 +149,7 @@ export default function AssignmentEditor() {
               } else {
                 onUpdateAssignment();
               }
+              fetchAssignments();
               redirect("../");
             }}>Save</Button>
         </Link>

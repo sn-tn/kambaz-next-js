@@ -29,7 +29,7 @@ export default function Signup() {
         // defaultValue={user.password}
         type="password"
         className="wd-password form-control mb-2"
-        onChange={(e) => setUser({ ...user, userame: e.target.value })}
+        onChange={(e) => setUser({ ...user, password: e.target.value })}
       />
       <Link
         href="Profile"

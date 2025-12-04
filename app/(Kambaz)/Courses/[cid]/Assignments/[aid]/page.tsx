@@ -17,7 +17,7 @@ export default function AssignmentEditor() {
         title: "New Assignment",
         course: cid,
         description: "New Assignment Description",
-        points: "100",
+        points: 100,
         due: new Date().toISOString().slice(0, 10),
         availableFrom: new Date().toISOString().slice(0, 10),
         availableUntil: new Date().toISOString().slice(0, 10),
@@ -117,18 +117,18 @@ export default function AssignmentEditor() {
             <label htmlFor="wd-assign-to" className="form-label"><b>Assign To</b></label>
             <input id="wd-assign-to" defaultValue="Everyone" className="form-control mb-4" />
             <label htmlFor="wd-due-date" className="form-label"><b>Due</b></label> <br />
-            <input type="date" id="wd-due-date" value={assignment.due || ""} className="form-control mb-4"
+            <input type="date" id="wd-due-date" value={assignment.due.slice(0, 10) || ""} className="form-control mb-4"
               onChange={(e) => setAssignment({ ...assignment, due: e.target.value })} />
             <Row>
               <Col>
                 <label htmlFor="wd-available-from" className="form-label"><b>Available from</b></label>
-                <input type="date" id="wd-available-from" value={assignment.availableFrom || ""} className="form-control"
+                <input type="date" id="wd-available-from" value={assignment.availableFrom.slice(0, 10) || ""} className="form-control"
                 onChange={(e) => setAssignment({...assignment, availableFrom: e.target.value})} />
 
               </Col>
               <Col>
                 <label htmlFor="wd-available-until" className="form-label"><b>Until</b></label>
-                <input type="date" id="wd-available-until" value={assignment.availableUntil || ""} className="form-control col-md-6"
+                <input type="date" id="wd-available-until" value={assignment.availableUntil.slice(0, 10) || ""} className="form-control col-md-6"
                 onChange={(e) => setAssignment({...assignment, availableUntil: e.target.value})} />
               </Col>
             </Row>

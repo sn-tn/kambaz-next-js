@@ -79,7 +79,6 @@ export default function Dashboard() {
     );
   };
   const onUpdateCourse = async () => {
-    console.log(course);
     await client.updateCourse(course);
     dispatch(
       setCourses(
@@ -99,7 +98,6 @@ export default function Dashboard() {
   };
   const enrollUserInCourse = async (courseId: string) => {
     const newEnrollment = await client.enrollUserInCourse(courseId);
-    console.log(newEnrollment);
     dispatch(setEnrollments([...enrollments, newEnrollment]));
   };
   const unenrollUserInCourse = async (courseId: string) => {
@@ -222,7 +220,6 @@ export default function Dashboard() {
                             onClick={(event) => {
                               event.preventDefault();
                               setCourse(course);
-                              console.log(course);
                             }}
                             className="btn-warning float-end me-2"
                             id="wd-edit-course-click"

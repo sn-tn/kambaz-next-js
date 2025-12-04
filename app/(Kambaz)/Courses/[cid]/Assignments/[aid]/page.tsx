@@ -145,7 +145,6 @@ export default function AssignmentEditor() {
           <Button variant="danger" className="border-secondary"
             onClick={() => {
               if (isNew) {
-                console.log("It's new");
                 onCreateAssignmentForCourse()
               } else {
                 onUpdateAssignment();

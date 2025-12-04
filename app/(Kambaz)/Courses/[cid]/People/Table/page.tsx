@@ -21,7 +21,7 @@ export default function PeopleTable({
     <div id="wd-people-table">
       {showDetails && (
         <PeopleDetails
-          uid={showUserId}
+          uid={showUserId as string}
           onClose={() => {
             setShowDetails(false);
             fetchUsers();

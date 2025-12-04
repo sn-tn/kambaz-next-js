@@ -23,7 +23,7 @@ import {
 } from "react-bootstrap";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../store";
-import { setEnrollments } from "../Enrollments/reducer";
+// import { setEnrollments } from "../Enrollments/reducer";
 import * as client from "../Courses/client";
 
 export default function Dashboard() {

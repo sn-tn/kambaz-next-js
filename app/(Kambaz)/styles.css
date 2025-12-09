@@ -46,3 +46,7 @@ body * {
 #wd-assignment-due {
   color: darkgray;
 }
+
+#wd-quiz-details-table {
+  border-style: dotted !important;
+}

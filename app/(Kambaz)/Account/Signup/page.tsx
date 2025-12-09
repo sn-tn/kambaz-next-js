@@ -6,11 +6,16 @@ import { useDispatch } from "react-redux";
 import * as client from "../client";
 import { setCurrentUser } from "../reducer";
 import { redirect } from "next/navigation";
+import { Button } from "react-bootstrap";
 
 export default function Signup() {
-  const [user, setUser] = useState<any>();
+  const [user, setUser] = useState<any>({role: "NONE"});
   const dispatch = useDispatch();
   const signup = async () => {
+    if (user.role == "NONE") {
+      alert("You must choose a role!");
+      return;
+    }
     const currentUser = await client.signup(user);
     dispatch(setCurrentUser(currentUser));
     redirect("/Account/Profile");
@@ -31,13 +36,25 @@ export default function Signup() {
         className="wd-password form-control mb-2"
         onChange={(e) => setUser({ ...user, password: e.target.value })}
       />
-      <Link
-        href="Profile"
+      <label htmlFor="id-signup-role-select">
+        <b>Role</b>
+      </label>
+      <select
+        id="wd-signup-role-select"
+        className="form-select w-50 mb-2"
+        onChange={(e) => setUser({ ...user, role: e.target.value })}
+        defaultValue="NONE"
+      >
+        <option value="NONE">Pick a role</option>
+        <option value="FACULTY">Faculty</option>
+        <option value="STUDENT">Student</option>
+      </select>
+      <Button
         className="btn btn-primary w-100 mb-2"
         onClick={signup}
       >
         Signup
-      </Link>
+      </Button>
       <br />
       <Link href="Signin"> Signin </Link>
     </div>

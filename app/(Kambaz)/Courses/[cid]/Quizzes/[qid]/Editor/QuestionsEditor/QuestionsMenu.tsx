@@ -190,7 +190,7 @@ export default function QuestionsMenu({
           )}
 
           {questionUpdates.questionType === "TF" && (
-            <div id="wd-question-editor-mc">
+            <div id="wd-question-editor-tf">
               <FormLabel htmlFor="wd-question-description">Question:</FormLabel>
               <FormControl
                 id="wd-question-description"
@@ -219,29 +219,11 @@ export default function QuestionsMenu({
                   )}
                 />
               </FormGroup>
-              <Button
-                className="m-1"
-                onClick={() =>
-                  setQuestionUpdates({
-                    ...questionUpdates,
-                    choices: [
-                      ...questionUpdates.choices,
-                      `New Choice ${questionUpdates.choices.length}`,
-                    ],
-                  })
-                }
-              >
-                + Another Answer
-              </Button>
-              <Button variant="danger" onClick={deleteLastChoice}>
-                <FaTrash className="fs-6 me-2" />
-                Delete Last Choice
-              </Button>
             </div>
           )}
 
           {questionUpdates.questionType === "FITB" && (
-            <div id="wd-question-editor-mc">
+            <div id="wd-question-editor-fitb">
               <FormLabel htmlFor="wd-question-description">Question:</FormLabel>
               <FormControl
                 id="wd-question-description"

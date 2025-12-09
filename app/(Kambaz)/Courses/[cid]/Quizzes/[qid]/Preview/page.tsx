@@ -118,7 +118,7 @@ export default function QuizPreview() {
         )}
 
         {quiz.questions[currentQuestion].questionType === "TF" && (
-          <Row id="wd-quiz-preview-answers-mc" className="m-1 ps-2">
+          <Row id="wd-quiz-preview-answers-tf" className="m-1 ps-2">
             <div>
               <FormCheck
                 name="choices"
@@ -143,7 +143,7 @@ export default function QuizPreview() {
         )}
 
         {quiz.questions[currentQuestion].questionType === "FITB" && (
-          <Row id="wd-quiz-preview-answers-mc" className="m-1 ps-2">
+          <Row id="wd-quiz-preview-answers-fitb" className="m-1 ps-2">
             <div>
               <FormControl
                 as="textarea"

@@ -171,7 +171,7 @@ export const createAttempt = async (
 };
 
 export const getAttemptsCountForUser = async (courseId: string, quizId:string, userId: string) => {
-  const response = await axios.get(`${COURSES_API}/${courseId}/quizzes/${quizId}/${userId}/count`);
+  const response = await axios.get(`${COURSES_API}/${courseId}/quizzes/${quizId}/users/${userId}/count`);
   return response.data;
 }
 export const getAttemptsForUser = async (courseId: string, userId: string) => {

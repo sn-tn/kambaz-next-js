@@ -19,10 +19,12 @@ import { FaTrash } from "react-icons/fa";
 export default function QuestionsMenu({
   question,
   deleteQuestion,
+  fetchQuestions,
 }: {
   question: any;
   deleteQuestion: (questionId: string) => void;
-}) {
+  fetchQuestions: () => void;
+ }) {
   const { cid, qid } = useParams();
   const [showEdit, setShowEdit] = useState(false);
   const [questionUpdates, setQuestionUpdates] = useState(question);
@@ -42,7 +44,7 @@ export default function QuestionsMenu({
       question._id as string,
       questionUpdates
     );
-    fetchQuestion();
+    fetchQuestions();
   };
   const deleteLastChoice = () => {
     const { choices } = questionUpdates;
@@ -251,7 +253,7 @@ export default function QuestionsMenu({
                 <FormLabel>Answers</FormLabel>
                 {questionUpdates.answers.map((answer: any, index: number) => (
                   <div key={index}>
-                    <FormLabel forHtml={`wd-fitb-answer-${index}`}>
+                    <FormLabel htmlFor={`wd-fitb-answer-${index}`}>
                       Possible Answer
                     </FormLabel>
                     <FormControl

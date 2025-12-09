@@ -49,7 +49,7 @@ export default function QuizQuestionsEditor() {
       <ListGroup id="wd-questions" className="m-2">
         {(questions as any).map((question: any) => (
           <ListGroupItem key={question._id} className="border rounded-0">
-            <div><QuestionsMenu question={question} deleteQuestion={deleteQuestion}/></div>
+            <div><QuestionsMenu question={question} deleteQuestion={deleteQuestion} fetchQuestions={fetchQuestions}/></div>
           </ListGroupItem>
         ))}
       </ListGroup>

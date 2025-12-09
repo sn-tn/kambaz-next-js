@@ -3,13 +3,7 @@ import { redirect, useParams } from "next/navigation";
 /* eslint-disable @typescript-eslint/no-explicit-any */
 import { useEffect, useState } from "react";
 import * as client from "../../../../client";
-import {
-  Button,
-  Col,
-  FormCheck,
-  FormControl,
-  Row,
-} from "react-bootstrap";
+import { Button, Col, FormCheck, FormControl, Row } from "react-bootstrap";
 import { FaPencil } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../../store";
@@ -80,6 +74,9 @@ export default function QuizPreview() {
         <h4>Loading</h4>
       </div>
     );
+  }
+  if (!quiz.questions[currentQuestion]) {
+    return <div>Quiz is invalid, add some questions.</div>;
   }
   return (
     <div id="wd-quiz-preview">

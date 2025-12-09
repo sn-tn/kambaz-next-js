@@ -83,14 +83,14 @@ export default function Quizzes() {
     if (!attempts) {
       return "?";
     }
-    const scoresForQuiz = (attempts as any).filter(
-      (attempt: any) => attempt.quiz === quiz._id
-    ).map((attempt: any) => attempt.score);
+    const scoresForQuiz = (attempts as any)
+      .filter((attempt: any) => attempt.quiz === quiz._id)
+      .map((attempt: any) => attempt.score);
     if (scoresForQuiz.length === 0) {
       return "?";
     }
-    
-    return Math.max(... scoresForQuiz);
+
+    return Math.max(...scoresForQuiz);
   };
   useEffect(() => {
     fetchQuizzes();
@@ -117,7 +117,10 @@ export default function Quizzes() {
             QUIZZES
           </div>
           <ListGroup id="wd-quiz-list" className="rounded-0">
-            {(isFaculty ? quizzes : quizzes.filter((quiz: any) => quiz.published))
+            {(isFaculty
+              ? quizzes
+              : quizzes.filter((quiz: any) => quiz.published)
+            )
               .toSorted((a: any, b: any) => {
                 const dateA = new Date(a.availableFrom);
                 const dateB = new Date(b.availableFrom);
@@ -138,14 +141,15 @@ export default function Quizzes() {
                     />
                   )}
                   <div id="wd-quiz-info" className="float-start">
-                    <Link
-                      href={`/Courses/${cid}/Quizzes/${quiz._id}/${
-                        isFaculty ? "Details" : "Preview"
-                      }`}
-                      className="text-decoration-none text-dark fs-4"
-                    >
-                      {quiz.title}
-                    </Link>{" "}
+                      <Link
+                        href={`/Courses/${cid}/Quizzes/${quiz._id}/${
+                          isFaculty ? "Details" : "Access"
+                        }`}
+                        className="text-decoration-none text-dark fs-4"
+                        onClick={(e) => !(isFaculty || getAttempts(quiz) > 0) ? e.preventDefault() : ""}
+                      >
+                        {quiz.title}
+                      </Link>
                     <br />
                     <span className="text-secondary">
                       {getAvailability(quiz)} | Due {getDueString(quiz)} |{" "}

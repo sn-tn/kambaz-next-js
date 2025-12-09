@@ -14,8 +14,6 @@ import {
   FormSelect,
   Row,
 } from "react-bootstrap";
-import FormCheckInput from "react-bootstrap/esm/FormCheckInput";
-import FormCheckLabel from "react-bootstrap/esm/FormCheckLabel";
 
 export default function QuizDetailsEditor() {
   const [quiz, setQuiz] = useState<any>();
@@ -49,7 +47,7 @@ export default function QuizDetailsEditor() {
       />
       <FormGroup controlId="wd-details-description" className="m-1 mt-3">
         <FormLabel>Quiz Description:</FormLabel>
-        <FormControl defaultValue={quiz.description} as="textarea" />
+        <FormControl defaultValue={quiz.description} as="textarea" onChange={(e) => setQuiz({...quiz, description: e.target.value})}/>
       </FormGroup>
       <Row className="m-1 mt-3">
         <Col className="col-3 text-end">Quiz Type</Col>
@@ -116,7 +114,7 @@ export default function QuizDetailsEditor() {
               />
             </Col>
             <Col className="col-4">
-              {timeLimitEnable ? (
+              {!timeLimitEnable ? (
                 <FormControl
                   id="wd-details-editor-time-limit-num"
                   className="w-50 float-end"

@@ -14,6 +14,7 @@ import { FaEllipsisVertical, FaPencil } from "react-icons/fa6";
 import * as client from "../../../../../client";
 import { useParams } from "next/navigation";
 import { FaTrash } from "react-icons/fa";
+import { MdDescription } from "react-icons/md";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export default function QuestionsMenu({
@@ -24,7 +25,7 @@ export default function QuestionsMenu({
   question: any;
   deleteQuestion: (questionId: string) => void;
   fetchQuestions: () => void;
- }) {
+}) {
   const { cid, qid } = useParams();
   const [showEdit, setShowEdit] = useState(false);
   const [questionUpdates, setQuestionUpdates] = useState(question);
@@ -150,6 +151,7 @@ export default function QuestionsMenu({
                 as="textarea"
                 className="m-1 mb-2"
                 defaultValue={questionUpdates.description}
+                onChange={(e) => setQuestionUpdates({...questionUpdates, description: e.target.value})}
               />
               <FormGroup>
                 <FormLabel>Answers</FormLabel>
@@ -164,7 +166,15 @@ export default function QuestionsMenu({
                         (answer: string) => choice === answer
                       )}
                     />
-                    <FormControl as="textarea" defaultValue={choice} />
+                    <FormControl
+                      as="textarea"
+                      defaultValue={choice}
+                      onChange={(e) => {
+                        const newChoices = [...questionUpdates.choices];
+                        newChoices[index] = e.target.value;
+                        setQuestionUpdates({...questionUpdates, choices: newChoices});
+                      }}
+                    />
                   </div>
                 ))}
               </FormGroup>
@@ -197,6 +207,7 @@ export default function QuestionsMenu({
                 as="textarea"
                 className="m-1 mb-2"
                 defaultValue={questionUpdates.description}
+                onChange={(e) => setQuestionUpdates({...questionUpdates, description: e.target.value})}
               />
               <FormGroup>
                 <FormLabel>Answers</FormLabel>
@@ -230,6 +241,7 @@ export default function QuestionsMenu({
                 as="textarea"
                 className="m-1 mb-2"
                 defaultValue={questionUpdates.description}
+                onChange={(e) => setQuestionUpdates({...questionUpdates, description: e.target.value})}
               />
               <FormGroup>
                 <FormLabel>Answers</FormLabel>

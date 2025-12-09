@@ -166,7 +166,7 @@ export const createAttempt = async (
   score: number
 ) => {
   const scoreJSON = {score: score};
-  const response = await axios.post(`${COURSES_API}/${courseId}/quizzes/${quizId}/${userId}`, scoreJSON);
+  const response = await axios.post(`${COURSES_API}/${courseId}/quizzes/${quizId}/users/${userId}`, scoreJSON);
   return response.data;
 };
 

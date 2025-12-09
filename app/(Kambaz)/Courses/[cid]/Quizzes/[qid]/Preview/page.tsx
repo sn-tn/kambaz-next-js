@@ -124,6 +124,9 @@ export default function QuizPreview() {
                 name="choices"
                 type="radio"
                 label="True"
+                checked={
+                  answers[quiz.questions[currentQuestion]._id] === "True"
+                }
                 onChange={() => {
                   const questionId = quiz.questions[currentQuestion]._id;
                   setAnswers({ ...answers, [questionId]: "True" });
@@ -133,6 +136,9 @@ export default function QuizPreview() {
                 name="choices"
                 type="radio"
                 label="False"
+                checked={
+                  answers[quiz.questions[currentQuestion]._id] === "False"
+                }
                 onChange={() => {
                   const questionId = quiz.questions[currentQuestion]._id;
                   setAnswers({ ...answers, [questionId]: "False" });

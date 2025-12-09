@@ -117,7 +117,7 @@ export default function Quizzes() {
             QUIZZES
           </div>
           <ListGroup id="wd-quiz-list" className="rounded-0">
-            {quizzes
+            {(isFaculty ? quizzes : quizzes.filter((quiz: any) => quiz.published))
               .toSorted((a: any, b: any) => {
                 const dateA = new Date(a.availableFrom);
                 const dateB = new Date(b.availableFrom);

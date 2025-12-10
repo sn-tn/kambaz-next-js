@@ -60,7 +60,7 @@ export default function QuizResultsPage() {
   };
   const getAnswerForQuestion = (qid: string) => {
     return recentAttempt.answers[qid];
-  }
+  };
   useEffect(() => {
     fetchQuiz();
     fetchRecentAttempt();
@@ -77,10 +77,21 @@ export default function QuizResultsPage() {
       <Button className="m-1" onClick={takeQuiz}>
         Take Quiz
       </Button>
-      {(!recentAttempt || recentAttempt.answers.length === 0) && (<div>Take the quiz!</div>)}
-      {recentAttempt && (quiz as any).questions.map((question: any) => (
-        <QuestionResult key={question._id} question={question} answer={getAnswerForQuestion(question._id)}/>
-      ))}
+      {(!recentAttempt || recentAttempt.answers.length === 0) && (
+        <div>Take the quiz!</div>
+      )}
+      {recentAttempt && (
+        <div>
+          Previous Score: {recentAttempt.score}
+          {(quiz as any).questions.map((question: any) => (
+            <QuestionResult
+              key={question._id}
+              question={question}
+              answer={getAnswerForQuestion(question._id)}
+            />
+          ))}
+        </div>
+      )}
     </div>
   );
 }

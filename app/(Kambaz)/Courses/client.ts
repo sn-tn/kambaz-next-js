@@ -163,10 +163,11 @@ export const createAttempt = async (
   courseId: string,
   quizId: string,
   userId: string,
-  score: number
+  score: number,
+  answers: any,
 ) => {
-  const scoreJSON = {score: score};
-  const response = await axios.post(`${COURSES_API}/${courseId}/quizzes/${quizId}/users/${userId}`, scoreJSON);
+  const body = {score: score, answers: answers};
+  const response = await axios.post(`${COURSES_API}/${courseId}/quizzes/${quizId}/users/${userId}`, body);
   return response.data;
 };
 

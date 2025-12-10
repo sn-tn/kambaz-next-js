@@ -10,11 +10,10 @@ import {
   FormSelect,
   Row,
 } from "react-bootstrap";
-import { FaEllipsisVertical, FaPencil } from "react-icons/fa6";
+import { FaPencil } from "react-icons/fa6";
 import * as client from "../../../../../client";
 import { useParams } from "next/navigation";
 import { FaTrash } from "react-icons/fa";
-import { MdDescription } from "react-icons/md";
 
 /* eslint-disable @typescript-eslint/no-explicit-any */
 export default function QuestionsMenu({

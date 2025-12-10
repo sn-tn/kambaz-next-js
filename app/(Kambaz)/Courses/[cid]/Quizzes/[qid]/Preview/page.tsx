@@ -7,13 +7,14 @@ import { Button, Col, FormCheck, FormControl, Row } from "react-bootstrap";
 import { FaPencil } from "react-icons/fa6";
 import { useSelector } from "react-redux";
 import { RootState } from "../../../../../store";
+import FakeResults from "./MiniResults";
 
 export default function QuizPreview() {
   const { cid, qid } = useParams();
   const [currentQuestion, setCurrentQuestion] = useState(0);
   const [quiz, setQuiz] = useState<any>();
   const [quizLength, setQuizLength] = useState(0);
-  const [answers, setAnswers] = useState<{ [qid: string]: string }>({});
+  const [answers, setAnswers] = useState<any>({});
   const [showScore, setShowScore] = useState(false);
   const [score, setScore] = useState(0);
   const { currentUser } = useSelector(
@@ -60,9 +61,10 @@ export default function QuizPreview() {
       cid as string,
       qid as string,
       (currentUser as any)._id,
-      score
+      score,
+      answers
     );
-    redirect(`/Courses/${cid}/Quizzes`);
+    redirect(`/Courses/${cid}/Quizzes/${qid}/Results`);
   };
   useEffect(() => {
     fetchQuizById();
@@ -84,6 +86,7 @@ export default function QuizPreview() {
         <Button
           variant="secondary"
           href={`/Courses/${cid}/Quizzes/${qid}/Editor/QuestionsEditor`}
+          className="mb-2 m-1"
         >
           <FaPencil />
           Edit
@@ -203,7 +206,9 @@ export default function QuizPreview() {
           Submit
         </Button>
       )}
-      {showScore && `Score: ${score}`}
+      <br /> <br /> <br />
+      {showScore && (<FakeResults answers={answers}/>)}
     </div>
+    
   );
 }

@@ -66,7 +66,6 @@ export default function Quizzes() {
       cid as string,
       (currentUser as any)._id
     );
-    console.log(myAttempts);
     setAttempts(myAttempts);
   };
   const getAttempts = (quiz: any) => {
@@ -143,10 +142,10 @@ export default function Quizzes() {
                   <div id="wd-quiz-info" className="float-start">
                       <Link
                         href={`/Courses/${cid}/Quizzes/${quiz._id}/${
-                          isFaculty ? "Details" : "Access"
+                          isFaculty ? "Details" : "Results"
                         }`}
                         className="text-decoration-none text-dark fs-4"
-                        onClick={(e) => !(isFaculty || getAttempts(quiz) > 0) ? e.preventDefault() : ""}
+                        // onClick={(e) => !(isFaculty || getAttempts(quiz) > 0) ? e.preventDefault() : ""}
                       >
                         {quiz.title}
                       </Link>

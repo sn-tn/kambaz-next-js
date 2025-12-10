@@ -44,9 +44,12 @@ export default function QuizResultsPage() {
     return (quiz as any).attempts - attempts;
   };
   const fetchRecentAttempt = async () => {
-    const attempts = await client.getAttemptsForUser(
+    const allAttempts = await client.getAttemptsForUser(
       cid as string,
       (currentUser as any)._id
+    );
+    const attempts = allAttempts.filter(
+      (attempt: any) => attempt.quiz === (quiz as any)._id
     );
     if (attempts.length > 0) {
       let mostRecent = attempts[0];
@@ -63,8 +66,13 @@ export default function QuizResultsPage() {
   };
   useEffect(() => {
     fetchQuiz();
-    fetchRecentAttempt();
   }, []);
+
+  useEffect(() => {
+    if (quiz) {
+      fetchRecentAttempt();
+    }
+  }, [quiz]);
   if (!quiz) {
     return (
       <div>

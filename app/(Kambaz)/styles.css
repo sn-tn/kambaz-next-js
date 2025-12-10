@@ -50,3 +50,7 @@ body * {
 #wd-quiz-details-table {
   border-style: dotted !important;
 }
+
+#wd-quiz-preview-info {
+  border-style: dotted !important;
+}

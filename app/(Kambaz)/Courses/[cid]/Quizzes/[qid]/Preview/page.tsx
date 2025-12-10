@@ -82,6 +82,13 @@ export default function QuizPreview() {
   }
   return (
     <div id="wd-quiz-preview">
+      <div id="wd-quiz-preview-info" className="border mb-2">
+        <h2>{quiz.title}</h2>
+        <div className="border rounded-1 m-1 p-2">
+          <h4>Quiz Description:</h4>
+          <div className="text-secondary">{quiz.description}</div>
+        </div>
+      </div>
       {isFaculty && (
         <Button
           variant="secondary"
@@ -207,8 +214,7 @@ export default function QuizPreview() {
         </Button>
       )}
       <br /> <br /> <br />
-      {showScore && (<FakeResults answers={answers}/>)}
+      {showScore && <FakeResults answers={answers} score={score}/>}
     </div>
-    
   );
 }

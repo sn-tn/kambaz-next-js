@@ -74,6 +74,13 @@ export default function QuizResultsPage() {
   }
   return (
     <div id="wd-quiz-results">
+      <div id="wd-quiz-preview-info" className="border mb-2">
+        <h2>{(quiz as any).title}</h2>
+        <div className="border rounded-1 m-1 p-2">
+          <h4>Quiz Description:</h4>
+          <div className="text-secondary">{(quiz as any).description}</div>
+        </div>
+      </div>
       <Button className="m-1" onClick={takeQuiz}>
         Take Quiz
       </Button>

@@ -5,7 +5,13 @@ import * as client from "../../../../client";
 import { useEffect, useState } from "react";
 import QuestionResult from "../Results/QuestionResult";
 
-export default function FakeResults({answers} : {answers: any}) {
+export default function FakeResults({
+  answers,
+  score,
+}: {
+  answers: any;
+  score: number;
+}) {
   const { cid, qid } = useParams();
   const [quiz, setQuiz] = useState();
   const fetchQuiz = async () => {
@@ -14,7 +20,7 @@ export default function FakeResults({answers} : {answers: any}) {
   };
   const getAnswerForQuestion = (qid: string) => {
     return answers[qid];
-  }
+  };
   useEffect(() => {
     fetchQuiz();
   }, []);
@@ -27,8 +33,13 @@ export default function FakeResults({answers} : {answers: any}) {
   }
   return (
     <div id="wd-quiz-results">
+      Score: {score}
       {(quiz as any).questions.map((question: any) => (
-        <QuestionResult key={question._id} question={question} answer={getAnswerForQuestion(question._id)}/>
+        <QuestionResult
+          key={question._id}
+          question={question}
+          answer={getAnswerForQuestion(question._id)}
+        />
       ))}
     </div>
   );

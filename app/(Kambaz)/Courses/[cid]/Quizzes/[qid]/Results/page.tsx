@@ -77,7 +77,7 @@ export default function QuizResultsPage() {
       <Button className="m-1" onClick={takeQuiz}>
         Take Quiz
       </Button>
-      {!recentAttempt && (<div>Take the quiz!</div>)}
+      {(!recentAttempt || recentAttempt.answers.length === 0) && (<div>Take the quiz!</div>)}
       {recentAttempt && (quiz as any).questions.map((question: any) => (
         <QuestionResult key={question._id} question={question} answer={getAnswerForQuestion(question._id)}/>
       ))}
